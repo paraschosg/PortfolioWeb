@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<header>
+    <h1>My Projects</h1>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/projects">Projects</a>
+    </nav>
+</header>
+<main>
+    <h2>Projects</h2>
+    <div id="project-list">
+        <script>
+            fetch("/projects")
+                .then(response => response.json())
+                .then(data => {
+                    const projectList = document.getElementById("project-list");
+                    data.forEach(project => {
+                        const projectCard = document.createElement("div");
+                        projectCard.classList.add("card");
+                        projectCard.innerHTML = `
+                            <h3>${project.name}</h3>
+                            <p>${project.description}</p>
+                            <a href="${project.url}" target="_blank">View Project</a>
+                        `;
+                        projectList.appendChild(projectCard);
+                    });
+                });
+        </script>
+    </div>
+</main>
+<footer>
+    <p>&copy; 2025 My Portfolio</p>
+</footer>
+</body>
+</html>
