@@ -18,6 +18,12 @@ public class HomeController {
         return "index";
     }
 
+    @GetMapping("/error")
+    public String error(Model model) {
+        model.addAttribute("title", "Error");
+        return "error";
+    }
+
     @GetMapping("/about")
     public String about(Model model) {
         model.addAttribute("title", "About Me");
@@ -27,7 +33,6 @@ public class HomeController {
     @GetMapping("/projects")
     public String projects(Model model) {
         model.addAttribute("title", "Projects");
-        model.addAttribute("projects", portfolioService.getAllProjects());
         return "projects";
     }
 }
